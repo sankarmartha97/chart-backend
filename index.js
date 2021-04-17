@@ -53,8 +53,7 @@ io.on("connect", (socket) => {
 
   socket.on("sendFileMessage", (message, file, filename, type, callback) => {
     const user = getUser(socket.id);
-
-    io.to(user.room).emit("message", { user: user.name, message: message, file:file, filename: filename, type: type});
+    io.to(user.room).emit("message", { user: user.name, message: message, file:file.toString('base64'), filename: filename, type: type});
 
     callback();
   });
